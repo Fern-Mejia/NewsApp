@@ -1,15 +1,13 @@
 package com.example.rkjc.news_app_2;
 
 public class NewsItem {
-    private String id;
-    private String name;
+
     private String author;
     private String title;
     private String description;
     private String url;
     private String urlToImage;
     private String publishedAt;
-    private String content;
 
 
     public NewsItem(String author, String title, String description, String url, String urlToImage, String publishedAt)

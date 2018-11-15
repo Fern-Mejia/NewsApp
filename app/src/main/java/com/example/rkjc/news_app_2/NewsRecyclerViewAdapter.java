@@ -45,6 +45,7 @@ public class NewsRecyclerViewAdapter  extends RecyclerView.Adapter<NewsRecyclerV
     }
 
     public class NewsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        String text;
         TextView author;
         TextView title;
         TextView description;
@@ -63,8 +64,10 @@ public class NewsRecyclerViewAdapter  extends RecyclerView.Adapter<NewsRecyclerV
         }
 
         void bind(final int listIndex) {
-            author.setText(mNewsItems.get(listIndex).getAuthor());
-            title.setText(mNewsItems.get(listIndex).getTitle());
+            author.setText("Author: ");
+            author.append(mNewsItems.get(listIndex).getAuthor());
+            title.setText("Title: ");
+            title.append(mNewsItems.get(listIndex).getTitle());
             description.setText(mNewsItems.get(listIndex).getDescription());
             url.setText(mNewsItems.get(listIndex).getUrl());
             urlToImage.setText(mNewsItems.get(listIndex).getUrlToImage());
