@@ -10,5 +10,37 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class NetworkUtils {
+    final static String BASE_URL =
+            "https://newsapi.org/v1/articles?source=the-next-web&sortBy=latest&apiKey=a5a7525080f1479d9d3fb12428a4f7ae";
 
+    public static URL buildUrl() {
+        Uri builtUri = Uri.parse(BASE_URL).buildUpon().build();
+
+        URL url = null;
+        try {
+            url = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        return url;
+    }
+    public static String getResponseFromHttpUrl(URL url) throws IOException {
+        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+        try {
+            InputStream in = urlConnection.getInputStream();
+
+            Scanner scanner = new Scanner(in);
+            scanner.useDelimiter("\\A");
+
+            boolean hasInput = scanner.hasNext();
+            if (hasInput) {
+                return scanner.next();
+            } else {
+                return null;
+            }
+        } finally {
+            urlConnection.disconnect();
+        }
+    }
 }
